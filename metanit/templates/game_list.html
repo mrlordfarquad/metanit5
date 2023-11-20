@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #000000;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    button {
+        background-color: #2ecc71;
+        color: #fff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #27ae60;
+    }
+
+
+    .search-container {
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search-box {
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+</style>
+
+    <div class="col-4">
+    <h1>Список игр</h1>
+        <div class="search-container">
+        <input type="text" class="search-box" placeholder="Поиск по названию игры" oninput="filterTable()">
+        </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>Play</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+                <tr>
+                    <td>{{ game.game_id }}</td>
+                    <td>{{ game.title }}</td>
+                    <td>{{ game.content }}</td>
+                    <td>{{ game.pub_date }}</td>
+                    <td><a href="{{ game.file }}"><button>Играть</button></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <script>
+    // Функция для фильтрации таблицы при вводе в строку поиска
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.querySelector('.search-box');
+        filter = input.value.toUpperCase();
+        table = document.querySelector('table');
+        tr = table.getElementsByTagName('tr');
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName('td')[1]; // Используйте индекс соответствующий столбцу с названием игры
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+    }
+    </script>
+{% endblock %}

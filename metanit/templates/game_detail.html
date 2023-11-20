@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-4">
+    <h1>Игра с ID: {{ BlogPost.person_id }}</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Date</th>
+            <th>Play</th>
+        </tr>
+        <tr>
+            <td>{{ BlogPost.game_id }}</td>
+            <td>{{ BlogPost.title }}</td>
+            <td>{{ BlogPost.content }}</td>
+            <td>{{ BlogPost.pub_date }}</td>
+            <td>тут будет кнопка играть</td>
+        </tr>
+    </table>
+</div>
+{% endblock  %}

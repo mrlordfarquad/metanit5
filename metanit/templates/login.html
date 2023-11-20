@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Autorization{% endblock title %}
+{% block header %}Login{% endblock header %}
+{% block content %}
+    <style>
+        [type="submit"] {
+        background-color: #2ecc71;
+        color: #fff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    </style>
+<div class="col-4">
+    <form id="add_form", method="post">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock  %}

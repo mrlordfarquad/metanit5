@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-4">
+    <h1>Пользователь с ID: {{ person.person_id }}</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>{{ person.person_id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock  %}

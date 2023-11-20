@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            min-height: 70px;
+        }
+
+        .mainway-games {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+            min-height: 30px;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .user-info {
+            color: #fff;
+            float: right;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            padding-bottom: 10%;
+            margin-top: 100px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-contact {
+            user-select: text;
+            cursor: text;
+        }
+
+        /* Media query for screens up to 1080x2400 pixels */
+@media (max-width: 1080px) and (max-height: 2400px) {
+    .mainway-games {
+        font-size: 18px;
+        top: 5px;
+        left: 5px;
+        padding: 3px;
+    }
+
+    .container {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .user-info {
+        margin-top: 3px;
+    }
+
+    .logout-btn {
+        padding: 2px 4px;
+    }
+
+    footer {
+        margin-top: 10px;
+    }
+
+    .footer p {
+        margin: 3px 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="mainway-games">Mainway Games</div>
+        <h1>{% block header %}{% endblock header %}</h1>
+    </header>
+
+    <nav>
+        <a href="/">Главная</a> <a href="/play">Игры</a>
+        {% if request.user.is_authenticated %}
+            <a href="/logout_page" class="logout-btn">Logout</a>
+        {% else %}
+            <a href="/register_page">Sign Up</a> <a href="/login_page">Login</a>
+        {% endif %}
+            <div class="user-info">{{ request.user }}</div>
+    </nav>
+
+    <div class="container">
+        <div>{% block content %}{% endblock content %}</div>
+    </div>
+
+<footer>
+    <p>Powered by Mainway Technologies</p>
+    <p class="footer-contact">Contact me: <a href="mailto:mazhitovfarkhat@gmail.com">mazhitovfarkhat@gmail.com</a> | <a href="tel:+7-555-930-8686">+7-555-930-8686</a></p>
+    <p>Address: Астана, Улица Пушкина, дом 31</p>
+    <p>
+        <a href="https://t.me/Farquier">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1024px-Telegram_2019_Logo.svg.png" alt="Telegram" width="25" height="25">
+        </a>
+    </p>
+</footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var container = document.querySelector('.container');
+            container.classList.add('fade-in');
+        });
+    </script>
+
+    <style>
+        .container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .container.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+</body>
+</html>
